@@ -1,0 +1,13 @@
+/*
+Enter your query here.
+*/
+
+
+SET @row_index := -1;
+
+SELECT ROUND(avg(N.LAT_N),4)
+FROM (
+select @row_index := @row_index + 1 AS row_index, LAT_N
+ORDER BY
+    STATION.LAT_N ) as N
+WHERE N.row_index IN (FLOOR(@row_index/2),CEIL(@row_index/2));
